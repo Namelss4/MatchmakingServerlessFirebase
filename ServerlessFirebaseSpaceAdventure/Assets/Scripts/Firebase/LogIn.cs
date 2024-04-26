@@ -13,7 +13,8 @@ public class LogIn : MonoBehaviour
         private TMP_InputField _emailInputField;
         [SerializeField]
         private TMP_InputField _passwordInputField;
-        
+        [SerializeField] private Auth authVar;
+        public ErrorMessage _errorMessage;
         void Reset()
         {
             _loginButton = GetComponent<Button>();
@@ -38,11 +39,15 @@ public class LogIn : MonoBehaviour
                 if (task.IsFaulted)
                 {
                     Debug.LogError("SignInWithEmailAndPasswordAsync encountered an error: " + task.Exception);
+                    _errorMessage.ShowErrorMessage("Invalid email or password");
                     return;
                 }
                 AuthResult result = task.Result;
                 Debug.LogFormat("User was logged in successfully: {0} ({1})",
                     result.User.DisplayName, result.User.UserId);
+                
+                authVar.ChangeAuthState();
+                
             });
         } 
         

@@ -35,7 +35,7 @@ public class Highscore : MonoBehaviour
     }
 
     // Display highscore to the screen.
-    private static void DisplayAmount()
+    public static void DisplayAmount()
     {
         // Check if display with "TOP: " text or without it.
         if(displayWithTextStatic)

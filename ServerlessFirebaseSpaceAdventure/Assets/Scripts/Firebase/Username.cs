@@ -17,12 +17,12 @@ public class Username : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Start()
+    void OnEnable()
     {
-        FirebaseAuth.DefaultInstance.StateChanged += HandleAuthChanged;
+        HandleAuthChanged();
     }
 
-    void HandleAuthChanged(object sender, EventArgs e)
+    void HandleAuthChanged()
     {
         var currentUser = FirebaseAuth.DefaultInstance.CurrentUser;
         if (currentUser != null)
